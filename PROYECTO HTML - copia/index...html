@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenida - Aprende y Cuida tu Salud</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ffe0f0, #e0f7fa);
+      color: #444;
+      overflow-x: hidden;
+    }
+    .pantalla-bienvenida {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+    h1 {
+      font-size: 40px;
+      color: #6a9c78;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    .btn-entrar, .btn-volver {
+      font-size: 22px;
+      padding: 12px 25px;
+      background-color: #a7d2cb;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+    .btn-entrar:hover, .btn-volver:hover {
+      background-color: #86b7b3;
+    }
+    .personaje {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 3px dashed #b39ddb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #999;
+      margin-bottom: 20px;
+    }
+    .secciones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .boton-seccion {
+      background-color: #f8bbd0;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #444;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .boton-seccion:hover {
+      transform: scale(1.05);
+      background-color: #f48fb1;
+    }
+    .opciones-edades {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f1f8e9;
+      border-radius: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .opcion {
+      margin: 10px;
+      padding: 10px 25px;
+      background-color: #c5e1a5;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    .opcion:hover {
+      background-color: #aed581;
+    }
+    #contenidoPrincipal {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 1s ease-in;
+    }
+    .contenido-seccion {
+      display: none;
+      margin-top: 20px;
+      background-color: #fff3e0;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="pantalla-bienvenida" id="bienvenida">
+    <h1>¡Bienvenidos a Aprende y Cuida tu Salud con Brainpopi!</h1>
+    <div class="personaje">[Personaje aquí]</div>
+    <p>Haz clic en el botón para comenzar tu aventura educativa 🧠✨</p>
+    <button class="btn-entrar" onclick="entrar()">Entrar al Programa</button>
+  </div>
+
+  <div id="contenidoPrincipal">
+    <h2 style="text-align:center;">¡Explora nuestras secciones!</h2>
+    <div class="secciones">
+      <div class="boton-seccion" onclick="mostrarOpciones('informatica')">💻 Informática</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('matematica')">📐 Matemática</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('idiomas')">🗣️ Idiomas</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('salud')">🩺 Salud</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('comida')">🍎 Comida</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('geografia')">🌍 Geografía</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('musica')">🎶 Música</div>
+    </div>
+    <div class="opciones-edades" id="opcionesEdades">
+      <h3>Selecciona tu grupo:</h3>
+      <div class="opcion" onclick="mostrarContenido('niños')">👶 Niños</div>
+      <div class="opcion" onclick="mostrarContenido('adolescentes')">🧑‍🎓 Adolescentes</div>
+    </div>
+    <div class="contenido-seccion" id="contenidoSeccion"></div>
+    <div style="text-align:center;">
+      <button class="btn-volver" onclick="volverInicio()">Volver al Inicio</button>
+    </div>
+  </div>
+
+  <script>
+    let seccionActual = '';
+
+    function entrar() {
+      document.getElementById('bienvenida').style.display = 'none';
+      document.getElementById('contenidoPrincipal').style.display = 'block';
+    }
+
+    function mostrarOpciones(seccion) {
+      seccionActual = seccion;
+      document.getElementById('opcionesEdades').style.display = 'block';
+      document.getElementById('contenidoSeccion').style.display = 'none';
+      document.getElementById('opcionesEdades').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function mostrarContenido(grupo) {
+      const contenedor = document.getElementById('contenidoSeccion');
+      contenedor.innerHTML = `<h3>${seccionActual.toUpperCase()} - ${grupo.toUpperCase()}</h3><p>Contenido de ejemplo para ${grupo} en el área de ${seccionActual}.</p>`;
+      contenedor.style.display = 'block';
+      contenedor.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function volverInicio() {
+      document.getElementById('contenidoPrincipal').style.display = 'none';
+      document.getElementById('bienvenida').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

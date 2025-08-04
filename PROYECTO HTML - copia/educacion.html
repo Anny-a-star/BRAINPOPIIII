@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Aprende y Cuida tu Salud</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e0f7fa;
+      color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+    h1, h2 {
+      color: #00796b;
+    }
+    .menu, .submenu {
+      margin-bottom: 20px;
+    }
+    .menu button, .submenu button, .material button, .song-button {
+      background-color: #4db6ac;
+      color: white;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .menu button:hover, .submenu button:hover, .material button:hover, .song-button:hover {
+      transform: scale(1.05);
+    }
+    section {
+      background: #ffffff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      display: none;
+    }
+    input, select {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    th {
+      background-color: #b2dfdb;
+    }
+    .subseccion {
+      background-color: #e0f2f1;
+      border: 1px dashed #ccc;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .material {
+      margin-top: 10px;
+    }
+    .material img {
+      width: 100px;
+      height: auto;
+    }
+    .song-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+    #lista-canciones {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 10px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: left;
+    }
+    audio {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Aprende y Cuida tu Salud</h1>
+
+  <button class="song-button" onclick="mostrarCanciones()">🎵 Canciones</button>
+
+  <div id="lista-canciones">
+    <h3>Canciones Educativas</h3>
+    <audio controls>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <audio controls>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <audio controls>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
+
+  <div class="menu">
+    <button onclick="mostrar('educacion')">📚 Educación</button>
+    <button onclick="mostrar('informatica')">💻 Informática</button>
+    <button onclick="mostrar('medicina')">🩺 Medicina</button>
+    <button onclick="mostrar('matematicas')">🧮 Matemáticas</button>
+    <button onclick="mostrar('idiomas')">🌎 Idiomas</button>
+    <button onclick="mostrar('comida')">🍎 Comidas Saludables</button>
+  </div>
+
+  <div class="submenu" id="submenu"></div>
+
+  <div id="contenidos"></div>
+
+  <script>
+    const categorias = {
+      educacion: ['Para niños', 'Para adolescentes'],
+      informatica: ['Para niños', 'Para adolescentes'],
+      medicina: ['Para niños', 'Para adolescentes'],
+      matematicas: ['Para niños', 'Para adolescentes'],
+      idiomas: ['Inglés', 'Francés', 'Mandarín'],
+      comida: ['Para niños', 'Para adolescentes']
+    };
+
+    const materiales = {
+      'educacion-Para niños': {
+        texto: 'Aprende con dibujos, canciones y juegos. Ejercicios para colorear el abecedario, contar objetos, y unir palabras con imágenes.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Educ+Niños'
+      },
+      'educacion-Para adolescentes': {
+        texto: 'Técnicas Pomodoro, mapas mentales, guías para tomar apuntes efectivos y gestionar el tiempo.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Educ+Adolescentes'
+      },
+      'informatica-Para niños': {
+        texto: 'Aprende las partes del computador, cómo usar el mouse y teclado, y navega con seguridad.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Info+Niños'
+      },
+      'informatica-Para adolescentes': {
+        texto: 'Conoce sobre redes sociales seguras, lógica de programación básica y creación de sitios web.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Info+Adolescentes'
+      },
+      'medicina-Para niños': {
+        texto: 'Cuida tu salud con hábitos de higiene como lavarse las manos, cepillarse los dientes y alimentarse bien.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Med+Niños'
+      },
+      'medicina-Para adolescentes': {
+        texto: 'Infografías sobre salud mental, primeros auxilios, vacunas, y nutrición balanceada.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Med+Adolescentes'
+      },
+      'matematicas-Para niños': {
+        texto: 'Sumas y restas con dibujos, conteo con juegos, y problemas matemáticos con historietas.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Mate+Niños'
+      },
+      'matematicas-Para adolescentes': {
+        texto: 'Ejercicios de fracciones, álgebra básica, gráficas y resolución de problemas cotidianos.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Mate+Adolescentes'
+      },
+      'idiomas-Inglés': {
+        texto: 'Vocabulario básico con ilustraciones, juegos de memoria y canciones interactivas.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Inglés'
+      },
+      'idiomas-Francés': {
+        texto: 'Carteles con números, colores y saludos básicos, con dibujos y pronunciación.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Francés'
+      },
+      'idiomas-Mandarín': {
+        texto: 'Ideogramas básicos y su significado, junto a ejercicios visuales para memorizar.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Mandarín'
+      },
+      'comida-Para niños': {
+        texto: 'Imágenes para armar platos saludables, actividades para identificar frutas y verduras.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Comida+Niños'
+      },
+      'comida-Para adolescentes': {
+        texto: 'Recetas nutritivas y fáciles, comparativas de alimentos saludables y poco saludables.',
+        imagen: 'https://via.placeholder.com/100x100.png?text=Comida+Adolescentes'
+      }
+    };
+
+    function mostrar(id) {
+      document.getElementById('contenidos').innerHTML = '';
+      const submenu = document.getElementById('submenu');
+      submenu.innerHTML = '';
+      categorias[id].forEach(sub => {
+        const btn = document.createElement('button');
+        btn.textContent = sub;
+        btn.onclick = () => mostrarContenido(id, sub);
+        submenu.appendChild(btn);
+      });
+    }
+
+    function mostrarContenido(cat, subcat) {
+      const key = `${cat}-${subcat}`;
+      const cont = materiales[key];
+      const html = `
+        <section style="display:block">
+          <h2>${cat.toUpperCase()} - ${subcat}</h2>
+          <div class="subseccion">
+            <p>${cont.texto}</p>
+            <div class="material">
+              <img src="${cont.imagen}" alt="${subcat}">
+              <br>
+              <button onclick="window.print()">Imprimir material</button>
+            </div>
+          </div>
+        </section>
+      `;
+      document.getElementById('contenidos').innerHTML = html;
+    }
+
+    function mostrarCanciones() {
+      const lista = document.getElementById('lista-canciones');
+      lista.style.display = lista.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>

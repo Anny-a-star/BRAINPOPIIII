@@ -1,0 +1,113 @@
+
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(90deg, #a2ebff,#e9caff, #93aaff);
+      color: #444;
+      overflow-x: hidden;
+    }
+    .pantalla-bienvenida {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+    h1 {
+      font-size: 40px;
+      color: #6a9c78;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    .btn-entrar, .btn-volver {
+      font-size: 22px;
+      padding: 12px 25px;
+      background-color: #a7d2cb;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+    .btn-entrar:hover, .btn-volver:hover {
+      background-color: #86b7b3;
+    }
+    .imagen-circular {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+    .secciones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .boton-seccion {
+      background-color: #f8bbd0;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #444;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .boton-seccion:hover {
+      transform: scale(1.05);
+      background-color: #f48fb1;
+    }
+    .opciones-edades {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f1f8e9;
+      border-radius: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .opcion {
+      margin: 10px;
+      padding: 10px 25px;
+      background-color: #c5e1a5;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    .opcion:hover {
+      background-color: #aed581;
+    }
+    #contenidoPrincipal {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 1s ease-in;
+    }
+    .contenido-seccion {
+      display: none;
+      margin-top: 20px;
+      background-color: #fff3e0;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }

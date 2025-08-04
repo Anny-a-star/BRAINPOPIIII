@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang = "es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="BRAINPOPI.css">
+</head>
+
+<body>
+  <div class= "pantalla-bienvenida" id= "bienvenida" >
+    <h1>Aprender es más divertido cuando lo haces con Brainpopi!!🧠</h1>
+    <div class="personaje">
+ <img src="imagenes/Uraraka.jpg" alt="Personaje" class="imagen-circular">
+ </div>
+
+    <p>Haz clic en el botón y comienza tu aventura educativa ✨</p>
+    <button class="btn-entrar" onclick="entrar()">Entrar al Programa</button>
+  </div>
+
+  <div id= "contenidoPrincipal" >
+    <h2 style="text-align:center;">¡Explora nuestras secciones!</h2>
+    <div class="secciones">
+      <div class="boton-seccion" onclick="mostrarOpciones('informatica')">💻 Informática</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('matematica')">📐 Matemática</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('idiomas')">🗣️ Idiomas</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('salud')">🩺 Salud</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('comida')">🍎 Comida</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('geografia')">🌍 Geografía</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('musica')">🎶 Música</div>
+    </div>
+    <div class="opciones-edades" id="opcionesEdades">
+      <h3>Selecciona tu grupo:</h3>
+      <div class="opcion" onclick="mostrarContenido('niños')">👶 Niños</div>
+      <div class="opcion" onclick="mostrarContenido('adolescentes')">🧑‍🎓 Adolescentes</div>
+    </div>
+    <div class="contenido-seccion" id="contenidoSeccion"></div>
+    <div style="text-align:center;">
+      <button class="btn-volver" onclick="volverInicio()">Volver al Inicio</button>
+  <button id="btnAtras" class="btn-volver" style="display:none;" onclick="atras()">Atrás</button>
+
+    </div>
+
+  <script src="BRAINPOPI.js"></script>
+
+  </body>
+
+</html>

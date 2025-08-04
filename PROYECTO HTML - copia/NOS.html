@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Proyecto Escolar - Brainpopi</title>
+  
+  <!-- Fuente divertida -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
+  <style>
+    /* Estilos hechos con cariño 💖 */
+    body {
+      margin: 0;
+      font-family: 'Baloo 2', cursive;
+      background: linear-gradient(135deg, #e0f7fa, #ffe0f0);
+      color: #444;
+      text-align: center;
+    }
+
+    .pantalla-bienvenida {
+      padding: 40px;
+    }
+
+    .personaje img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin: 20px 0;
+    }
+
+    .btn-entrar, .btn-volver {
+      padding: 10px 20px;
+      background-color: #4db6ac;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    .btn-entrar:hover, .btn-volver:hover {
+      background-color: #00796b;
+    }
+
+    .secciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .boton-seccion {
+      background-color: #81d4fa;
+      padding: 15px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .boton-seccion:hover {
+      background-color: #0288d1;
+      color: white;
+    }
+
+    .opciones-edades {
+      margin-top: 20px;
+    }
+
+    .opcion {
+      display: inline-block;
+      background-color: #ffd54f;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .opcion:hover {
+      background-color: #ffb300;
+    }
+
+    .contenido-seccion {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pantalla-bienvenida" id="bienvenida">
+    <h1>Aprender es más divertido con Brainpopi 🧠</h1>
+
+    <div class="personaje">
+      <!-- Imagen random de personaje anime que me gusta -->
+      <img src="https://i.pinimg.com/originals/f4/8a/e6/f48ae67b1b1b23db155b2f6a85be361e.jpg" alt="Personaje anime">
+    </div>
+
+    <p>Haz clic en el botón para empezar tu aventura educativa ✨</p>
+    <button class="btn-entrar" onclick="entrar()">Entrar al Programa</button>
+  </div>
+
+  <div id="contenidoPrincipal" style="display: none;">
+    <h2>¡Explora nuestras secciones!</h2>
+
+    <div class="secciones">
+      <div class="boton-seccion" onclick="mostrarOpciones('informatica')">💻 Informática</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('matematica')">📐 Matemática</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('idiomas')">🗣️ Idiomas</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('salud')">🩺 Salud</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('comida')">🍎 Comida</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('geografia')">🌍 Geografía</div>
+      <div class="boton-seccion" onclick="mostrarOpciones('musica')">🎶 Música</div>
+    </div>
+
+    <div class="opciones-edades" id="opcionesEdades">
+      <h3>¿Qué grupo eres?</h3>
+      <div class="opcion" onclick="mostrarContenido('niños')">👶 Niños</div>
+      <div class="opcion" onclick="mostrarContenido('adolescentes')">🧑‍🎓 Adolescentes</div>
+    </div>
+
+    <div class="contenido-seccion" id="contenidoSeccion"></div>
+
+    <button class="btn-volver" onclick="volverInicio()">Volver al Inicio</button>
+  </div>
+
+  <script>
+    // Script básico hecho con esfuerzo ✨
+
+    function entrar() {
+      document.getElementById("bienvenida").style.display = "none";
+      document.getElementById("contenidoPrincipal").style.display = "block";
+    }
+
+    function volverInicio() {
+      document.getElementById("contenidoPrincipal").style.display = "none";
+      document.getElementById("bienvenida").style.display = "block";
+      document.getElementById("contenidoSeccion").innerHTML = "";
+    }
+
+    function mostrarOpciones(area) {
+      const opciones = document.getElementById("opcionesEdades");
+      opciones.style.display = "block";
+
+      const contenido = document.getElementById("contenidoSeccion");
+      contenido.innerHTML = `<p>Seleccionaste el área de <strong>${area}</strong>. Ahora elige tu grupo.</p>`;
+    }
+
+    function mostrarContenido(grupo) {
+      const contenido = document.getElementById("contenidoSeccion");
+      if (grupo === "niños") {
+        contenido.innerHTML += "<p>¡Hola niños! Aquí aprenderemos jugando 🧸</p>";
+      } else if (grupo === "adolescentes") {
+        contenido.innerHTML += "<p>¡Hey adolescentes! Prepárense para aprender cosas muy cool 😎</p>";
+      }
+    }
+  </script>
+</body>
+</html>
